@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+<h1>Giỏ Hàng</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên Mặt Hàng</th>
+        <th>Giá</th>
+        <th>Xóa Khỏi Giỏ</th>
+    </tr>
+    </thead>
+    <tbody id="cartItems">
+    <!-- Dữ liệu sản phẩm trong giỏ hàng sẽ được hiển thị ở đây -->
+    </tbody>
+</table>
+
+<button onclick="checkout()">Thanh Toán</button>
+
+<script>
+    // Giả sử bạn có một danh sách sản phẩm trong giỏ hàng
+    var cart = [
+        { id: 1, name: "Sản phẩm 1", price: 100 },
+        { id: 2, name: "Sản phẩm 2", price: 75 },
+        { id: 3, name: "Sản phẩm 3", price: 50 }
+    ];
+
+    // Hàm để hiển thị danh sách sản phẩm trong giỏ hàng
+    function displayCart() {
+        var cartItems = document.getElementById("cartItems");
+
+        // Xóa toàn bộ nội dung cũ trong tbody
+        cartItems.innerHTML = "";
+
+        // Duyệt qua danh sách sản phẩm trong giỏ hàng và hiển thị
+        for (var i = 0; i < cart.length; i++) {
+            var item = cart[i];
+            var row = document.createElement("tr");
+
+            var idCell = document.createElement("td");
+            idCell.textContent = item.id;
+            row.appendChild(idCell);
+
+            var nameCell = document.createElement("td");
+            nameCell.textContent = item.name;
+            row.appendChild(nameCell);
+
+            var priceCell = document.createElement("td");
+            priceCell.textContent = "$" + item.price;
+            row.appendChild(priceCell);
+
+            var deleteCell = document.createElement("td");
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Xóa";
+            deleteButton.addEventListener("click", function () {
+                // Hàm xử lý xóa sản phẩm khỏi giỏ hàng ở đây
+                // Sau khi xóa, gọi lại hàm displayCart để cập nhật giao diện
+            });
+            deleteCell.appendChild(deleteButton);
+            row.appendChild(deleteCell);
+
+            cartItems.appendChild(row);
+        }
+    }
+
+    // Hàm để xử lý thanh toán
+    function checkout() {
+        // Thực hiện thanh toán ở đây
+        alert("Đã thanh toán. Cảm ơn bạn!");
+    }
+
+    // Gọi hàm displayCart để hiển thị danh sách sản phẩm ban đầu
+    displayCart();
+</script>
+</body>
+</html>
