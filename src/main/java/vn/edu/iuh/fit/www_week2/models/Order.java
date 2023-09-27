@@ -17,12 +17,16 @@ public class Order {
     private Employee employeeId;
     @ManyToOne
     @JoinColumn(name = "cust_id")
-    private Employee custId;
+    private Customer custId;
 
     public Order() {
     }
 
-    public Order(int orderId, Date orderDate, Employee employeeId, Employee custId) {
+    public Order(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public Order(int orderId, Date orderDate, Employee employeeId, Customer custId) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.employeeId = employeeId;
@@ -53,11 +57,11 @@ public class Order {
         this.employeeId = employeeId;
     }
 
-    public Employee getCustId() {
+    public Customer getCustId() {
         return custId;
     }
 
-    public void setCustId(Employee custId) {
+    public void setCustId(Customer custId) {
         this.custId = custId;
     }
 

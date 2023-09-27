@@ -1,11 +1,10 @@
 package vn.edu.iuh.fit.www_week2.models;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.util.List;
-
+@Entity
+@Table(name = "order_details")
 public class OrderDetail {
     //order_detail (order_id, product_id, quantity, price, note)
     @OneToOne
