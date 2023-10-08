@@ -2,10 +2,11 @@ package vn.edu.iuh.fit.www_week2.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 @Entity
 @Table(name = "product_prices")
-public class ProductPrice {
+public class ProductPrice implements Serializable {
     //product_price (product_id, price_date_time, price, note)
     @Id
     @OneToOne

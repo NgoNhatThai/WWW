@@ -2,11 +2,12 @@ package vn.edu.iuh.fit.www_week2.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "product_images")
-public class ProductImage {
+public class ProductImage implements Serializable {
     //product_image (product_id, image_id, path, alternative)
-    @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product productId;

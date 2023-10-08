@@ -1,3 +1,4 @@
+<%@ page import="vn.edu.iuh.fit.www_week2.services.EmployeeService" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,9 @@
     <script src="script.js"></script>
 </head>
 <body>
+<%
+    EmployeeService employeeService= new EmployeeService();
+%>
 <div id="cart">
     <h2><a href="ShoppingCart.html">Giỏ hàng</a></h2>
     <ul id="cart-items">

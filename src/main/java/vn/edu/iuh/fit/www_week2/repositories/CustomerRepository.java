@@ -3,26 +3,28 @@ package vn.edu.iuh.fit.www_week2.repositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import vn.edu.iuh.fit.www_week2.Connection.Connection;
 import vn.edu.iuh.fit.www_week2.enums.EmployeeStatus;
+import vn.edu.iuh.fit.www_week2.models.Customer;
 import vn.edu.iuh.fit.www_week2.models.Employee;
 
 import java.util.List;
 
-public class EmployeeRepository {
+public class CustomerRepository {
+    private EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction tr;
     //private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final Logger logger= LoggerFactory.getLogger(this.getClass().getName());
-    public EmployeeRepository(){
-        em= Persistence.createEntityManagerFactory("WWW_week2").createEntityManager();
-        tr= em.getTransaction();
+    public CustomerRepository(){
+        emf = Connection.getInstance().getEmf();
+        em = emf.createEntityManager();
+        tr = em.getTransaction();
     }
 
-    public void add(Employee e){
+    public void add(Customer e){
         tr.begin();
         try {
             em.persist(e);
@@ -34,11 +36,11 @@ public class EmployeeRepository {
         }
     }
 
-    public void setStatus(Employee e, EmployeeStatus es){
-        e.setStatus(es);
-    }
+//    public void setStatus(Employee e, EmployeeStatus es){
+//        e.setEmployeeStatus(es);
+//    }
 
-    public void update(Employee e){
+    public void update(Customer e){
         tr.begin();
         try {
             em.merge(e);
@@ -50,15 +52,15 @@ public class EmployeeRepository {
         }
     }
 
-    public Employee findById(long id){
-        String sql = "select * from employees where emp_id like '"+id+"'";
-        Employee e = (Employee) em.createNativeQuery(sql, Employee.class).getSingleResult();
+    public Customer findById(long id){
+        String sql = "select * from customers where cus_id like '"+id+"'";
+        Customer e = (Customer) em.createNativeQuery(sql, Customer.class).getSingleResult();
         return e;
     }
 
-    public List<Employee> getAll(){
-        String sql = "select * from employees";
-        List<Employee> le = em.createNativeQuery(sql, Employee.class).getResultList();
+    public List<Customer> getAll(){
+        String sql = "select * from customers";
+        List<Customer> le = em.createNativeQuery(sql, Customer.class).getResultList();
         return le;
     }
 }

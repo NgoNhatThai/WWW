@@ -1,9 +1,6 @@
 package vn.edu.iuh.fit.www_week2.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.SplittableRandom;
 @Entity
@@ -12,8 +9,9 @@ public class Customer {
     //customer (cust_id, cust_name, email, phone, address)
     @Id
     @Column(name = "cust_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int custId;
-    @Column(name = "cust-name")
+    @Column(name = "cust_name")
     private String custName;
     private String email;
     private String phone;
@@ -22,8 +20,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int custId, String custName, String email, String phone, String address) {
-        this.custId = custId;
+    public Customer(String custName, String email, String phone, String address) {
         this.custName = custName;
         this.email = email;
         this.phone = phone;

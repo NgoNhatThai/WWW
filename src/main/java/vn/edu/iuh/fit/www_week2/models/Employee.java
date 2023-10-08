@@ -1,48 +1,52 @@
 package vn.edu.iuh.fit.www_week2.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_week2.enums.EmployeeStatus;
 
 import java.util.Date;
-
 @Entity
 @Table(name = "employees")
+@NamedQueries(
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e")
+)
 public class Employee {
-    //employee (emp_id, full_name, dob, email, phone, address, status)
     @Id
-    @Column(name = "employee_id", nullable = false)
-    private int employeeId;
-    @Column(name = "full_name")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "emp_id")
+    private int empId;
+    @Column(name = "full_name", length = 150, nullable = false)
     private String fullName;
+    @Column(nullable = false)
     private Date dob;
+    @Column(unique = true, length = 150)
     private String email;
+    @Column(length = 15, nullable = false)
     private String phone;
+    @Column(length = 250, nullable = false)
     private String address;
-    @Column(name = "status")
-    private EmployeeStatus employeeStatus;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status", nullable = false)
+    private EmployeeStatus status;
 
-    public Employee() {
-    }
-
-    public Employee(int employeeId, String fullName, Date dob, String email, String phone, String address, EmployeeStatus employeeStatus) {
-        this.employeeId = employeeId;
+    public Employee(String fullName, Date dob, String email, String phone, String address, EmployeeStatus status) {
         this.fullName = fullName;
         this.dob = dob;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.employeeStatus = employeeStatus;
+        this.status = status;
+    }
+
+    public Employee() {
+
     }
 
     public int getEmployeeId() {
-        return employeeId;
+        return empId;
     }
 
     public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+        this.empId = employeeId;
     }
 
     public String getFullName() {
@@ -85,24 +89,25 @@ public class Employee {
         this.address = address;
     }
 
-    public EmployeeStatus getEmployeeStatus() {
-        return employeeStatus;
+    public EmployeeStatus getStatus() {
+        return status;
     }
 
-    public void setEmployeeStatus(EmployeeStatus employeeStatus) {
-        this.employeeStatus = employeeStatus;
+    public void setStatus(EmployeeStatus status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "employeeId=" + employeeId +
+                "employeeId=" + empId +
                 ", fullName='" + fullName + '\'' +
                 ", dob=" + dob +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", employeeStatus=" + employeeStatus +
+                ", status=" + status +
                 '}';
     }
 }
+

@@ -9,6 +9,7 @@ public class Order {
     //order (order_id, order_date, emp_id, cust_id)
     @Id
     @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
     @Column(name = "order_date")
     private Date orderDate;
@@ -26,8 +27,7 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Order(int orderId, Date orderDate, Employee employeeId, Customer custId) {
-        this.orderId = orderId;
+    public Order(Date orderDate, Employee employeeId, Customer custId) {
         this.orderDate = orderDate;
         this.employeeId = employeeId;
         this.custId = custId;

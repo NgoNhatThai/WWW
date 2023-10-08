@@ -1,9 +1,6 @@
 package vn.edu.iuh.fit.www_week2.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_week2.enums.ProductStatus;
 @Entity
 @Table(name = "products")
@@ -11,6 +8,7 @@ public class Product {
     //product (product_id, name, description, unit, manufacturer_name, status)
     @Id
     @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productId;
     private String name;
     private String desciption;
