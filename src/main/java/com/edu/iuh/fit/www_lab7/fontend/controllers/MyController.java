@@ -2,6 +2,7 @@ package com.edu.iuh.fit.www_lab7.fontend.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MyController {
@@ -13,4 +14,6 @@ public class MyController {
     public String viewProducts(){
         return "customer/productViewPage";
     }
+    @GetMapping ("/datHang")
+    public String datHang(){ return "customer/datHang";}
 }

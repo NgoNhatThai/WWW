@@ -4,13 +4,64 @@
     <meta charset="UTF-8">
     <title>Xem danh sach san pham</title>
     <script>
-        function getData(){
-            fetch('/products')
-                .then(response => response.json())
-                .then(json => console.log(json))
-        }
-        const data=getData();
-        document.getElementById("id1")
+        // function getData(){
+        //     const data={};
+        //     fetch('/products')
+        //         .then(response => response.json())
+        //         .then(json => console.log(json))
+        //         .then(data=json)
+        // }
+        // const data=getData();
+        // console.log(data);
+        // const table=document.getElementById("tableBody");
+        // //table.innerHTML("");
+        // data.forEach(item => {
+        //     const row = document.createElement("tr");
+        //     row.innerHTML = `<tr>
+        //                         <td>${item.product_id}</td>
+        //                         <td>${item.name}</td>
+        //                         <td>${item.unit}</td>
+        //                         <td>${item.description}</td>
+        //                         <td>${item.status}</td>
+        //                       </tr>
+        //             `;
+        //     table.appendChild(row);
+        // });
+        document.addEventListener("DOMContentLoaded", function() {
+            function getData() {
+                return fetch('/products')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Call a function to populate the table with the fetched data
+                        populateTable(data);
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+
+            function populateTable(data) {
+                const tableBody = document.getElementById("tableBody");
+
+                // Clear existing rows
+                tableBody.innerHTML = "";
+
+                // Loop through the data and create a new row for each item
+                data.forEach(item => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${item.product_id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.unit}</td>
+                        <td>${item.description}</td>
+                        <td>${item.status}</td>
+                        <td><a href="/datHang?id=${item.product_id}">Buy now</a></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            // Call the getData function
+            getData();
+        });
     </script>
 </head>
 <body>
@@ -22,12 +73,10 @@
                 <td>Unit</td>
                 <td>Description</td>
                 <td>Status</td>
+                <td>Get</td>
             </tr>
         </thead>
-        <tbody>
-        <tr id="id1">
-
-        </tr>
+        <tbody id="tableBody">
         </tbody>
     </table>
 </body>

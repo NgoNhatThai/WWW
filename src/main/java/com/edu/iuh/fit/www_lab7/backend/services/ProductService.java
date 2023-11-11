@@ -22,6 +22,6 @@ public class ProductService {
         productResponsitory.deleteById(id);
     }
     public Product getProductbyId(long id){
-        return productResponsitory.getReferenceById(id);
+        return productResponsitory.findById(id).get();
     }
 }

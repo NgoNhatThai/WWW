@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy now</title>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+        console.log("Id= "+productId);
+        function getData() {
+            return fetch(`/getOneProductById?id=${productId}`, {
+                method:"GET",
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+
+                .then(response => response.json())
+                .then(data => {
+                    populateTable(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+        function populateTable(data) {
+            console.log("done here")
+            console.log(data)
+            const id= document.getElementById("productId");
+            id.innerHTML(`${data.product_id}`);
+            const name= document.getElementById("productName");
+            name.innerHTML(`${data.name}`);
+            const desc= document.getElementById("productDescription");
+            desc.innerHTML(`${data.description}`);
+            const unit= document.getElementById("productUnit");
+            unit.innerHTML(`${data.unit}`);
+
+        }
+        getData();
+    </script>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        #quantityOutput {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Thông Tin Sản Phẩm</h2>
+
+<label for="productId">ID:</label>
+<input type="text" id="productId" value="" readonly>
+
+<label for="productName">Tên Sản Phẩm:</label>
+<input type="text" id="productName" value="Sản Phẩm ABC" readonly>
+
+<label for="productDescription">Mô Tả:</label>
+<textarea id="productDescription" rows="4" readonly>Sản phẩm mô tả chi tiết.</textarea>
+
+<label for="productUnit">Đơn Vị:</label>
+<input type="text" id="productUnit" value="Cái" readonly>
+
+<label for="productStatus">Trạng Thái:</label>
+<input type="text" id="productStatus" value="Còn Hàng" readonly>
+
+<h2>Chọn Số Lượng Đặt Hàng</h2>
+
+<input type="range" id="quantity" min="1" max="10" value="1">
+<output for="quantity" id="quantityOutput">1</output>
+<h2>Thành tiền: </h2>
+<label for="productStatus">Trạng Thái:</label>
+<input type="text" id="thanhTien" value="Còn Hàng" readonly>
+
+<button onclick="placeOrder()">Đặt Hàng</button>
+
+<script>
+    function placeOrder() {
+        const productId = document.getElementById('productId').value;
+        const productName = document.getElementById('productName').value;
+        const quantity = document.getElementById('quantity').value;
+
+        // You can perform further actions here, such as sending the order to the server
+
+        alert(`Đặt hàng thành công!\nID: ${productId}\nTên Sản Phẩm: ${productName}\nSố Lượng: ${quantity}`);
+    }
+
+    // Update the quantity output when the range input changes
+    document.getElementById('quantity').addEventListener('input', function() {
+        document.getElementById('quantityOutput').textContent = this.value;
+    });
+</script>
+</body>
+</html>
