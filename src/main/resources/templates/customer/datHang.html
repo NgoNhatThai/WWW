@@ -24,14 +24,16 @@
         function populateTable(data) {
             console.log("done here")
             console.log(data)
+            //console.log(${data.product_id})
             const id= document.getElementById("productId");
-            id.innerHTML(`${data.product_id}`);
+            //id.innerHTML("");
+            id.value=data.product_id;
             const name= document.getElementById("productName");
-            name.innerHTML(`${data.name}`);
+            name.value=data.name;
             const desc= document.getElementById("productDescription");
-            desc.innerHTML(`${data.description}`);
+            desc.value=data.description;
             const unit= document.getElementById("productUnit");
-            unit.innerHTML(`${data.unit}`);
+            unit.value=data.unit;
 
         }
         getData();
@@ -75,8 +77,8 @@
 <input type="range" id="quantity" min="1" max="10" value="1">
 <output for="quantity" id="quantityOutput">1</output>
 <h2>Thành tiền: </h2>
-<label for="productStatus">Trạng Thái:</label>
-<input type="text" id="thanhTien" value="Còn Hàng" readonly>
+<label for="productStatus">Tổng tiền: </label>
+<input type="text" id="thanhTien" value="" readonly>
 
 <button onclick="placeOrder()">Đặt Hàng</button>
 
