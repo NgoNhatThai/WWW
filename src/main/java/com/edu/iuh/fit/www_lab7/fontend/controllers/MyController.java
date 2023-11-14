@@ -16,4 +16,12 @@ public class MyController {
     }
     @GetMapping ("/datHang")
     public String datHang(){ return "customer/datHang";}
+    @GetMapping("/login")
+    public String login(){
+        return "LoginPage";
+    }
+    @GetMapping("/managerProduct")
+    public String managerPage(){
+        return "admin/ManagerPage";
+    }
 }

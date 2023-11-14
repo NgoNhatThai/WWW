@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login to Manager</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;,
+            margin-top: 20px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-left: 10px;
+        }
+
+        button {
+            width: 100px;
+            height: 30px;
+            border-width: 2px;
+            border-color: blue;
+            margin-top: 30px;
+        }
+        div {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+    </style>
+    <script>
+        function getData() {
+            return fetch('/admins')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    getListAdmins(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+        function getListAdmins(data){
+            console.log(data)
+            const name= document.getElementById("name").value;
+            console.log(name)
+            const pass= document.getElementById("password").value;
+            console.log(pass)
+            console.log("------")
+            var count= 0;
+            data?.forEach(item => {
+                console.log(item.name)
+                console.log(item.password)
+                if (item.name===name && item.password===pass){
+                    console.log("ok")
+                    window.location.href = "managerProduct";
+                    count ++;
+                }
+            })
+            if (count===0){
+                alert("Thong tin dang nhap khong chinh xac!")
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Nhập thông tin tài khoản</h2>
+    <br />
+    <div>
+        <label >Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+    </div>
+
+    <br />
+    <div>
+        <label >Password:</label>
+        <input type="text" id="password" placeholder="Enter your password">
+    </div>
+
+
+    <br />
+    <button onclick="getData()">LOGIN</button>
+</body>
+</html>

@@ -49,6 +49,7 @@ public class Product {
         this.unit = unit;
         this.manufacturer = manufacturer;
         this.status = status;
+
     }
 
     public long getProduct_id() {
