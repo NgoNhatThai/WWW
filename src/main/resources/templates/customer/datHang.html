@@ -21,8 +21,22 @@
                 })
                 .catch(error => console.error('Error fetching data:', error));
         }
+        function getPriceProduct() {
+            return fetch(`/getPriceProduct?id=${productId}`, {
+                method:"GET",
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+
+                .then(response => response.json())
+                .then(data => {
+                    setPrice(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
         function populateTable(data) {
-            console.log("done here")
+            //console.log("done here")
             console.log(data)
             //console.log(${data.product_id})
             const id= document.getElementById("productId");
@@ -34,9 +48,16 @@
             desc.value=data.description;
             const unit= document.getElementById("productUnit");
             unit.value=data.unit;
-
+        }
+        function setPrice(priceOfProduct){
+            console.log(priceOfProduct)
+            console.log("here")
+            const price= document.getElementById("productPrice");
+            price.value= priceOfProduct.toString();
+            console.log(price.value)
         }
         getData();
+        getPriceProduct();
     </script>
     <style>
         label {
@@ -71,6 +92,9 @@
 
 <label for="productStatus">Trạng Thái:</label>
 <input type="text" id="productStatus" value="Còn Hàng" readonly>
+
+<label for="productPrice">Đơn giá:</label>
+<input type="text" id="productPrice" value="" readonly>
 
 <h2>Chọn Số Lượng Đặt Hàng</h2>
 

@@ -35,10 +35,10 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductImage> productImageList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetails = new ArrayList<>();
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductPrice> productPrices = new ArrayList<>();
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+//    private List<OrderDetail> orderDetails = new ArrayList<>();
+//    @OneToMany(mappedBy = "product")
+//    private List<ProductPrice> productPrices = new ArrayList<>();
 
     public Product() {
     }
@@ -108,21 +108,21 @@ public class Product {
         this.productImageList = productImageList;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
-    public List<ProductPrice> getProductPrices() {
-        return productPrices;
-    }
-
-    public void setProductPrices(List<ProductPrice> productPrices) {
-        this.productPrices = productPrices;
-    }
+//    public List<OrderDetail> getOrderDetails() {
+//        return orderDetails;
+//    }
+//
+//    public void setOrderDetails(List<OrderDetail> orderDetails) {
+//        this.orderDetails = orderDetails;
+//    }
+//
+//    public List<ProductPrice> getProductPrices() {
+//        return productPrices;
+//    }
+//
+//    public void setProductPrices(List<ProductPrice> productPrices) {
+//        this.productPrices = productPrices;
+//    }
 
     @Override
     public String toString() {
