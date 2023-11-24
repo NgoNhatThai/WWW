@@ -54,10 +54,32 @@
             console.log("here")
             const price= document.getElementById("productPrice");
             price.value= priceOfProduct.toString();
+            const total= document.getElementById("thanhTien")
+            total.value = priceOfProduct.toString();
             console.log(price.value)
         }
         getData();
         getPriceProduct();
+        function changeTotal(){
+            const price= document.getElementById("productPrice").value
+            const quantity = document.getElementById("quantity").value
+            const total= document.getElementById("thanhTien")
+            total.value= (price*quantity)
+        }
+        function createOrder() {
+            const id = document.getElementById("productId").value;
+            const quantity = document.getElementById("quantity").value;
+            const total = document.getElementById("thanhTien").value;
+            fetch(`/createOrder?price=${total}&quantity=${quantity}&id=${id}`, {
+                method:"POST",
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+                .then(
+                    alert("Đã tạo hóa đơn !")
+                )
+        }
     </script>
     <style>
         label {
@@ -98,29 +120,13 @@
 
 <h2>Chọn Số Lượng Đặt Hàng</h2>
 
-<input type="range" id="quantity" min="1" max="10" value="1">
+<input type="range" id="quantity" min="1" max="10" value="1" onclick="changeTotal()">
 <output for="quantity" id="quantityOutput">1</output>
 <h2>Thành tiền: </h2>
 <label for="productStatus">Tổng tiền: </label>
 <input type="text" id="thanhTien" value="" readonly>
 
-<button onclick="placeOrder()">Đặt Hàng</button>
+<button onclick="createOrder()">Đặt Hàng</button>
 
-<script>
-    function placeOrder() {
-        const productId = document.getElementById('productId').value;
-        const productName = document.getElementById('productName').value;
-        const quantity = document.getElementById('quantity').value;
-
-        // You can perform further actions here, such as sending the order to the server
-
-        alert(`Đặt hàng thành công!\nID: ${productId}\nTên Sản Phẩm: ${productName}\nSố Lượng: ${quantity}`);
-    }
-
-    // Update the quantity output when the range input changes
-    document.getElementById('quantity').addEventListener('input', function() {
-        document.getElementById('quantityOutput').textContent = this.value;
-    });
-</script>
 </body>
 </html>
