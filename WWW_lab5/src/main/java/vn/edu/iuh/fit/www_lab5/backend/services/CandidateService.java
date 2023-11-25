@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.www_lab5.backend.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import vn.edu.iuh.fit.www_lab5.backend.models.Candidate;
@@ -9,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 @Service
 public class CandidateService {
+    @Autowired
     private CandidateRepository candidateRepository;
     public Page<Candidate> findAll(int pageNo, int pageSize, String sortBy, String sortDirection){
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);

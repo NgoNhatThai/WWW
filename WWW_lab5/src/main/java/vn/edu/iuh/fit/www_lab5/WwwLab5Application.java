@@ -26,29 +26,29 @@ public class WwwLab5Application {
     private CandidateRepository candidateRepository;
     @Autowired
     private AddressRepository addressRepository;
-    @Bean
-    CommandLineRunner initData() {
-        return args -> {
-            Random rnd = new Random();
-            for (int i = 1; i < 200; i++) {
-                Address add = new Address(
-                        Country.VIETNAM,
-                        rnd.nextInt(1, 1000) + "",
-                        rnd.nextInt(70000, 80000) + "",
-                        "HCM City",
-                        "Nguyen Hue"
-                        );
-                addressRepository.save(add);
-                Candidate can = new Candidate(
-                        LocalDate.of(1998, rnd.nextInt(1, 13), rnd.nextInt(1, 29)),
-                        add,
-                        rnd.nextLong(1111111111L, 9999999999L) + "",
-                        "email_" + i + "@gmail.com",
-                        "Nguyen Van A"
-                );
-                candidateRepository.save(can);
-                System.out.println("Added: " + can);
-            }
-        };
-    }
+//    @Bean
+//    CommandLineRunner initData() {
+//        return args -> {
+//            Random rnd = new Random();
+//            for (int i = 1; i < 200; i++) {
+//                Address add = new Address(
+//                        Country.VIETNAM,
+//                        rnd.nextInt(1, 1000) + "",
+//                        rnd.nextInt(70000, 80000) + "",
+//                        "HCM City",
+//                        "Nguyen Hue"
+//                        );
+//                addressRepository.save(add);
+//                Candidate can = new Candidate(
+//                        LocalDate.of(1998, rnd.nextInt(1, 13), rnd.nextInt(1, 29)),
+//                        add,
+//                        rnd.nextLong(1111111111L, 9999999999L) + "",
+//                        "email_" + i + "@gmail.com",
+//                        "Nguyen Van A"
+//                );
+//                candidateRepository.save(can);
+//                System.out.println("Added: " + can);
+//            }
+//        };
+//}
 }

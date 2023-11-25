@@ -26,24 +26,24 @@ public class CandidateController {
         model.addAttribute("candidates", candidateRepository.findAll());
         return "candidates/candidates";
     }
-    @GetMapping("/candidates")
-    public String showCandidateListPaging(Model model,
-                                          @RequestParam("page") Optional<Integer> page,
-                                          @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(2);
-        int pageSize = size.orElse(10);
-        Page<Candidate> candidatePage= candidateService.findPaginated(
-                PageRequest.of(currentPage -1, pageSize)
-        );
-//        Page<Candidate> candidatePage = candidateServices.findAll(currentPage - 1, pageSize, "id", "asc");
-        model.addAttribute("candidatePage", candidatePage);
-        int totalPages = candidatePage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-        return "candidates/candidates-paging";
-    }
+//    @GetMapping("/candidates")
+//    public String showCandidateListPaging(Model model,
+//                                          @RequestParam("page") Optional<Integer> page,
+//                                          @RequestParam("size") Optional<Integer> size) {
+//        int currentPage = page.orElse(2);
+//        int pageSize = size.orElse(10);
+//        Page<Candidate> candidatePage= candidateService.findPaginated(
+//                PageRequest.of(currentPage -1, pageSize)
+//        );
+////        Page<Candidate> candidatePage = candidateServices.findAll(currentPage - 1, pageSize, "id", "asc");
+//        model.addAttribute("candidatePage", candidatePage);
+//        int totalPages = candidatePage.getTotalPages();
+//        if (totalPages > 0) {
+//            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+//                    .boxed()
+//                    .collect(Collectors.toList());
+//            model.addAttribute("pageNumbers", pageNumbers);
+//        }
+//        return "candidates/candidates-paging";
+//    }
 }
