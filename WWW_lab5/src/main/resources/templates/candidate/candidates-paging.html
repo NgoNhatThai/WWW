@@ -47,7 +47,7 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             </tbody>
         </table>
         <div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
-            <a th:href="@{/candidates(size=${candidatePage.size}, page=${pageNumber})}"
+            <a th:href="@{/templates/candidates(size=${candidatePage.size}, page=${pageNumber})}"
                th:text = "${pageNumber}"
                th:class = "${pageNumber == candidatePage.number + 1} ? active"></a>
         </div>

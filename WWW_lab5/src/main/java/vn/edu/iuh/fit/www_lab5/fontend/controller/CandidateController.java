@@ -1,21 +1,18 @@
 package vn.edu.iuh.fit.www_lab5.fontend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import vn.edu.iuh.fit.www_lab5.backend.models.Candidate;
+import vn.edu.iuh.fit.www_lab5.backend.models.Company;
 import vn.edu.iuh.fit.www_lab5.backend.repositories.CandidateRepository;
 import vn.edu.iuh.fit.www_lab5.backend.services.CandidateService;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-@Controller
+
+@RestController
 public class CandidateController {
     @Autowired
     private CandidateRepository candidateRepository;
@@ -25,6 +22,11 @@ public class CandidateController {
     public String showCandidateList(Model model) {
         model.addAttribute("candidates", candidateRepository.findAll());
         return "candidates/candidates";
+    }
+
+    @GetMapping("/getListCandidate")
+    public List<Candidate> getAll(){
+        return candidateService.getAll();
     }
 //    @GetMapping("/candidates")
 //    public String showCandidateListPaging(Model model,
