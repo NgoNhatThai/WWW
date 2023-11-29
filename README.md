@@ -1,6 +1,6 @@
 Mỗi bài tập được push lên 1 branch tương ứng.
 
-## Llogs web
+## Blogs web
 
 Dự án này là một hệ thống quản lý cho phép người dùng có thể đăng bài, comment hoặc trả lời comment của người dùng khác.
 
