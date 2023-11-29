@@ -9,7 +9,7 @@ Dự án này là một hệ thống quản lý mua sắm trực tuyến trên w
 1. Lệnh clone dự án về máy:
 
     ```bash
-    git clone --branch lab12_shopping_tomcat https://github.com/NgoNhatThai/WWW.git
+    git clone --branch lab2_shopping_tomcat https://github.com/NgoNhatThai/WWW.git
     ```
 
 2. Cài đặt các dependencies trong mục Build.gradle:
